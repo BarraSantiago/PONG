@@ -1,0 +1,50 @@
+﻿  Ball.cpp
+C:\Users\barra\RiderProjects\PONG\PONG\Ball.cpp(6,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\Ball.cpp(6,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  menu.cpp
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(8,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(9,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(48,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(49,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(113,74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(113,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(149,27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(150,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(155,27): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(156,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(189,74): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(190,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(191,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(191,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(192,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(192,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(193,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(193,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(194,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(194,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(195,85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(195,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(195,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(196,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(238,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(239,61): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(240,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(278,77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(278,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(279,85): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\menu.cpp(279,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Pad.cpp
+  main.cpp
+C:\Users\barra\RiderProjects\PONG\PONG\main.cpp(7,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RunGame.cpp
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(73,77): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(73,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(73,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(73,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(80,18): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(79,109): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(79,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(216,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\barra\RiderProjects\PONG\PONG\RunGame.cpp(227,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+LINK : fatal error LNK1104: cannot open file 'raylib.lib'
