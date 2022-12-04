@@ -26,7 +26,7 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
     float timerGrowBar = 8.0f;
     float timerDwarfBall = 10.0f;
 
-    while (!WindowShouldClose())
+    while (menuOptions == play)
     {
         timerGrowBar -= GetFrameTime();
         timerDwarfBall -= GetFrameTime();
@@ -56,6 +56,8 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
 
         DrawGame(ball, bar1, bar2, growBar, dwarfBall, score);
         PowerUp(ball, bar1, bar2, growBar, dwarfBall, ballSpeedX);
+        if(IsKeyReleased(KEY_X)) menuOptions = menu;
+        if(WindowShouldClose()) CloseWindow();
     }
     menuOptions = MenuOptions::menu;
 }
