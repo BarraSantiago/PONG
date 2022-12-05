@@ -8,10 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26e9b978-043e-43ed-8f43-e307ec135c8f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PONG/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PONG/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PONG/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PONG/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PONG/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PONG/RunGame.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PONG/RunGame.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PONG/RunGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/PONG/RunGame.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PONG/menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PONG/menu.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +117,9 @@
       <workItem from="1666379118351" duration="3982000" />
       <workItem from="1666626042407" duration="2002000" />
       <workItem from="1669904962721" duration="3640000" />
-      <workItem from="1670104146367" duration="2886000" />
+      <workItem from="1670104146367" duration="3480000" />
+      <workItem from="1670171888758" duration="1191000" />
+      <workItem from="1670256815289" duration="4385000" />
     </task>
     <servers />
   </component>

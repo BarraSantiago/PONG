@@ -10,7 +10,7 @@ using namespace std;
 
 void RunGame(MenuOptions& menuOptionsbool, bool p2Active);
 void DrawGame(Rectangle ball, Rectangle bar1, Rectangle bar2, Rectangle growBar, Rectangle dwarfBall, int score[]);
-void BotIA(Rectangle& bar, Rectangle ball, float barSpeed, bool p2Active);
+void BotIA(Rectangle& bar, Rectangle ball, float barSpeed);
 void PlayerActions(Rectangle& bar1, Rectangle& bar2, float barSpeed, bool p2Active);
 void SpawnBall(Rectangle& ball, float& ballSpeedX, float& ballSpeedY, float& auxSpeed, float initialBallSpeed);
 void CheckBallCollision(Rectangle& ball, Rectangle bar1, Rectangle bar2, float& ballSpeedX, float& ballSpeedY, float& auxSpeed, int score[], float initialBallSpeed);

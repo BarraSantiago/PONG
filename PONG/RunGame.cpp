@@ -1,5 +1,7 @@
 #include "RunGame.h"
 
+static float timerGrowBar;
+static float timerDwarfBall;
 
 void RunGame(MenuOptions& menuOptions, bool p2Active)
 {
@@ -23,8 +25,8 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
     HidePowerUps(growBar, dwarfBall);
     SpawnBall(ball, ballSpeedX, ballSpeedY, auxSpeed, initialBallSpeed);
 
-    float timerGrowBar = 8.0f;
-    float timerDwarfBall = 10.0f;
+    timerGrowBar = 8.0f;
+    timerDwarfBall = 10.0f;
 
     while (menuOptions == play)
     {
@@ -48,7 +50,7 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
 
         MoveBall(ball, ballSpeedX, ballSpeedY);
 
-        BotIA(bar2, ball, barSpeed, p2Active);
+        if (!p2Active) BotIA(bar2, ball, barSpeed);
 
         PlayerActions(bar1, bar2, barSpeed, p2Active);
 
@@ -56,8 +58,8 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
 
         DrawGame(ball, bar1, bar2, growBar, dwarfBall, score);
         PowerUp(ball, bar1, bar2, growBar, dwarfBall, ballSpeedX);
-        if(IsKeyReleased(KEY_X)) menuOptions = menu;
-        if(WindowShouldClose()) CloseWindow();
+        if (IsKeyReleased(KEY_X)) menuOptions = menu;
+        if (WindowShouldClose()) CloseWindow();
     }
     menuOptions = MenuOptions::menu;
 }
@@ -74,7 +76,7 @@ void DrawGame(Rectangle ball, Rectangle bar1, Rectangle bar2, Rectangle growBar,
     {
         DrawRectangle(halfScreen + bar1.width * 0.5f, i, bar1.width / 1.3f, screenHeight, WHITE);
     }
-    
+
     for (int i = 0; i < 2; ++i)
     {
         DrawText(TextFormat("%i", score[i]), halfScreen - widthAux + widthAux * 2.0f * i, GetScreenHeight() / 40.0f,
@@ -88,15 +90,12 @@ void DrawGame(Rectangle ball, Rectangle bar1, Rectangle bar2, Rectangle growBar,
     EndDrawing();
 }
 
-void BotIA(Rectangle& bar, Rectangle ball, float barSpeed, bool p2Active)
+void BotIA(Rectangle& bar, Rectangle ball, float barSpeed)
 {
-    if (!p2Active)
-    {
-        if (ball.y <= bar.y + bar.height * 0.3f && bar.y > 0)
-            bar.y -= (barSpeed * GetFrameTime()) * 0.58f;
-        if (ball.y >= bar.y + bar.height * 0.7f && bar.y < GetScreenHeight() - bar.height)
-            bar.y += (barSpeed * GetFrameTime()) * 0.58f;
-    }
+    if (ball.y <= bar.y + bar.height * 0.3f && bar.y > 0)
+        bar.y -= (barSpeed * GetFrameTime()) * 0.58f;
+    if (ball.y >= bar.y + bar.height * 0.7f && bar.y < GetScreenHeight() - bar.height)
+        bar.y += (barSpeed * GetFrameTime()) * 0.58f;
 }
 
 void PlayerActions(Rectangle& bar1, Rectangle& bar2, float barSpeed, bool p2Active)
@@ -183,7 +182,7 @@ bool CheckXBorderCollision(Rectangle ball)
 
 bool CheckYBorderCollision(Rectangle ball)
 {
-    return ball.y <= 0 || ball.y >= GetScreenHeight();
+    return ball.y - ball.height / 2 <= 0 || ball.y + ball.height / 2 >= GetScreenHeight();
 }
 
 bool CheckBarCollision(Rectangle ball, Rectangle bar1, Rectangle bar2)
@@ -246,12 +245,14 @@ void PowerUp(Rectangle& ball, Rectangle& bar1, Rectangle& bar2, Rectangle& growB
             bar1.height *= 1.6f;
             growBar.x *= 500;
         }
+        timerGrowBar = 7.0f;
     }
 
     if (CheckRecRecCollision(dwarfBall, ball))
     {
         ball.width *= 0.5f;
         dwarfBall.x *= 500;
+        timerDwarfBall = 6.f;
     }
 }
 

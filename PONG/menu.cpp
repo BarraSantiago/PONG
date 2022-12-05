@@ -213,8 +213,8 @@ void DrawRules(Rectangle backRulesRec)
     const string rulesTitle = "REGLAS";
     const string rules1P = "Un Jugador:\n-movimiento: WS. Volver al menu: X";
     const string rules2P = "Dos Jugadores:\n-movimiento: WS y flecha hacia arriba y abajo";
-    const string rulesPowerUpA = "Poderes:\n-Dwarf Ball: Hace que la pelota se reduzca a la mitad. Se resetea cada 10 segundos.";
-    const string rulesPowerUpB = "-Grow Bar: Hace que la paleta crezca. Se resetea cada 8 segundos.";
+    const string rulesPowerUpA = "Poderes:\n-Dwarf Ball: Hace que la pelota se reduzca a la mitad. Dura 6 segundos.";
+    const string rulesPowerUpB = "-Grow Bar: Hace que la paleta crezca. Dura 7 segundos.";
     const string rulesBack = "Back";
 
     DrawRectangleRec(backRulesRec, CheckCollisionPointRec(GetMousePosition(), backRulesRec) ? DARKGRAY : BLACK);
