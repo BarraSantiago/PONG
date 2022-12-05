@@ -2,12 +2,14 @@
 
 static float timerGrowBar;
 static float timerDwarfBall;
-
+float screenWidth;
+float screenHeight;
 void RunGame(MenuOptions& menuOptions, bool p2Active)
 {
     const float initialBallSpeed = 300.0f;
     const float barSpeed = 700.0f;
-
+    screenWidth = static_cast<float>(GetScreenWidth());
+    screenHeight = static_cast<float>(GetScreenHeight());
 
     float auxSpeed = initialBallSpeed;
     float ballSpeedX;
@@ -36,14 +38,14 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
         if (timerGrowBar < 0)
         {
             ResetGrowBar(growBar);
-            bar1.height = static_cast<float>(GetScreenHeight()) / 7.0f;
-            bar2.height = static_cast<float>(GetScreenHeight()) / 7.0f;
+            bar1.height = static_cast<float>(screenHeight) / 7.0f;
+            bar2.height = static_cast<float>(screenHeight) / 7.0f;
             timerGrowBar = 8.0f;
         }
         if (timerDwarfBall < 0)
         {
             ResetDwarfBall(dwarfBall);
-            ball.width = (static_cast<float>(GetScreenHeight()) / 7.0f) / 10.0f;
+            ball.width = (static_cast<float>(screenHeight) / 7.0f) / 10.0f;
             timerDwarfBall = 8.0f;
         }
         CheckBallCollision(ball, bar1, bar2, ballSpeedX, ballSpeedY, auxSpeed, score, initialBallSpeed);
@@ -66,20 +68,20 @@ void RunGame(MenuOptions& menuOptions, bool p2Active)
 
 void DrawGame(Rectangle ball, Rectangle bar1, Rectangle bar2, Rectangle growBar, Rectangle dwarfBall, int score[])
 {
-    const float screenHeight = GetScreenHeight() / 30.0f;
-    const float widthAux = GetScreenWidth() / 15.0f;
-    const float halfScreen = GetScreenWidth() / 2.0f;
+    const float screenHeight2 = screenHeight / 30.0f;
+    const int widthAux = static_cast<int>(screenWidth) / 15;
+    const float halfScreen = screenWidth / 2.0f;
 
     BeginDrawing();
 
-    for (float i = 0; i < GetScreenHeight(); i += screenHeight * 2.0f)
+    for (int i = 0; i < screenHeight; i += static_cast<int>(screenHeight2) * 2)
     {
-        DrawRectangle(halfScreen + bar1.width * 0.5f, i, bar1.width / 1.3f, screenHeight, WHITE);
+        DrawRectangle(static_cast<int>(halfScreen + bar1.width * 0.5f), i, static_cast<int>(bar1.width / 1.3f), static_cast<int>(screenHeight2), WHITE);
     }
 
     for (int i = 0; i < 2; ++i)
     {
-        DrawText(TextFormat("%i", score[i]), halfScreen - widthAux + widthAux * 2.0f * i, GetScreenHeight() / 40.0f,
+        DrawText(TextFormat("%i", score[i]), static_cast<int>(halfScreen - widthAux + widthAux * 2.0f * i), static_cast<int>(screenHeight) / 40,
                  widthAux,WHITE);
     }
 
@@ -94,7 +96,7 @@ void BotIA(Rectangle& bar, Rectangle ball, float barSpeed)
 {
     if (ball.y <= bar.y + bar.height * 0.3f && bar.y > 0)
         bar.y -= (barSpeed * GetFrameTime()) * 0.58f;
-    if (ball.y >= bar.y + bar.height * 0.7f && bar.y < GetScreenHeight() - bar.height)
+    if (ball.y >= bar.y + bar.height * 0.7f && bar.y < screenHeight - bar.height)
         bar.y += (barSpeed * GetFrameTime()) * 0.58f;
 }
 
@@ -104,13 +106,13 @@ void PlayerActions(Rectangle& bar1, Rectangle& bar2, float barSpeed, bool p2Acti
     {
         if (IsKeyDown(KEY_UP) && bar2.y > 0)
             bar2.y -= barSpeed * GetFrameTime();
-        if (IsKeyDown(KEY_DOWN) && bar2.y < GetScreenHeight() - bar2.height)
+        if (IsKeyDown(KEY_DOWN) && bar2.y < screenHeight - bar2.height)
             bar2.y += barSpeed * GetFrameTime();
     }
 
     if (IsKeyDown('W') && bar1.y > 0)
         bar1.y -= barSpeed * GetFrameTime();
-    if (IsKeyDown('S') && bar1.y < GetScreenHeight() - bar1.height)
+    if (IsKeyDown('S') && bar1.y < screenHeight - bar1.height)
         bar1.y += barSpeed * GetFrameTime();
 }
 
@@ -120,9 +122,9 @@ void CheckBallCollision(Rectangle& ball, Rectangle bar1, Rectangle bar2, float& 
 {
     if (CheckBarCollision(ball, bar1, bar2))
     {
-        ball.x = ball.x < GetScreenWidth() / 2.0f
+        ball.x = ball.x < screenWidth / 2.0f
                      ? bar1.x + ball.width + bar1.width
-                     : GetScreenWidth() - (bar1.x + ball.width + bar1.width + 1); //REPOSICIONA BALL AFUERA DE LA BARRA
+                     : screenWidth - (bar1.x + ball.width + bar1.width + 1); //REPOSICIONA BALL AFUERA DE LA BARRA
 
         if (abs(ballSpeedX) == initialBallSpeed)
             ballSpeedX += ballSpeedX < 0 ? -initialBallSpeed / 3 : initialBallSpeed / 3;
@@ -136,7 +138,7 @@ void CheckBallCollision(Rectangle& ball, Rectangle bar1, Rectangle bar2, float& 
 
     if (CheckXBorderCollision(ball))
     {
-        score[ball.x > GetScreenWidth() / 2 ? 0 : 1]++;
+        score[ball.x > screenWidth / 2 ? 0 : 1]++;
         SpawnBall(ball, ballSpeedX, ballSpeedY, auxSpeed, initialBallSpeed);
     }
 }
@@ -144,7 +146,7 @@ void CheckBallCollision(Rectangle& ball, Rectangle bar1, Rectangle bar2, float& 
 void BallDirection(Rectangle ball, Rectangle bar1, Rectangle bar2, float& ballSpeedY, float& auxSpeed,
                    float initialBallSpeed)
 {
-    if (ball.x < GetScreenWidth() / 2.0f)
+    if (ball.x < screenWidth / 2.0f)
         SetBallVelocity(ball, bar1, ballSpeedY, auxSpeed, initialBallSpeed);
     else
         SetBallVelocity(ball, bar2, ballSpeedY, auxSpeed, initialBallSpeed);
@@ -177,12 +179,12 @@ static bool CheckRecRecCollision(Rectangle rec1, Rectangle rec2)
 
 bool CheckXBorderCollision(Rectangle ball)
 {
-    return ball.x <= 0 || ball.x >= GetScreenWidth();
+    return ball.x <= 0 || ball.x >= screenWidth;
 }
 
 bool CheckYBorderCollision(Rectangle ball)
 {
-    return ball.y - ball.height / 2 <= 0 || ball.y + ball.height / 2 >= GetScreenHeight();
+    return ball.y - ball.height / 2 <= 0 || ball.y + ball.height / 2 >= screenHeight;
 }
 
 bool CheckBarCollision(Rectangle ball, Rectangle bar1, Rectangle bar2)
@@ -196,8 +198,8 @@ void SpawnBall(Rectangle& ball, float& ballSpeedX, float& ballSpeedY, float& aux
     ballSpeedX = initialBallSpeed * (rand() % 2 == 0 ? -1.0f : 1.0f);
     ballSpeedY = initialBallSpeed * (rand() % 2 == 0 ? -1.0f : 1.0f) * 1.35F;
     auxSpeed = initialBallSpeed;
-    ball.x = GetScreenWidth() / 2.0f;
-    ball.y = GetScreenHeight() / 2.0f;
+    ball.x = screenWidth / 2.0f;
+    ball.y = screenHeight / 2.0f;
 }
 
 void CheckWin(int score[], float& ballSpeedX, float& ballSpeedY, MenuOptions& menuOptions)
@@ -210,10 +212,10 @@ void CheckWin(int score[], float& ballSpeedX, float& ballSpeedY, MenuOptions& me
         ballSpeedX = 0;
         string pla2Win = "Gano Player 2!";
 
-        DrawText(pla2Win.c_str(), GetScreenWidth() / 2 - MeasureText(pla2Win.c_str(), GetScreenHeight() / 10) / 2,
-                 GetScreenHeight() / 2, GetScreenHeight() / 10, NEONCYAN);
-        DrawText(pressEsc.c_str(), GetScreenWidth() / 2 - MeasureText(pressEsc.c_str(), GetScreenHeight() / 23) / 2,
-                 GetScreenHeight() / 1.7f, GetScreenHeight() / 23, NEONCYAN);
+        DrawText(pla2Win.c_str(), static_cast<int>(screenWidth) / 2 - MeasureText(pla2Win.c_str(), static_cast<int>(screenHeight) / 10) / 2,
+                 static_cast<int>(screenHeight) / 2, static_cast<int>(screenHeight) / 10, NEONCYAN);
+        DrawText(pressEsc.c_str(), static_cast<int>(screenWidth) / 2 - MeasureText(pressEsc.c_str(), static_cast<int>(screenHeight) / 23) / 2,
+                 static_cast<int>(screenHeight / 1.7f), static_cast<int>(screenHeight) / 23, NEONCYAN);
         menuOptions = MenuOptions::menu;
     }
     else if (score[1] == 7)
@@ -221,10 +223,10 @@ void CheckWin(int score[], float& ballSpeedX, float& ballSpeedY, MenuOptions& me
         ballSpeedY = 0;
         ballSpeedX = 0;
         string pla1Win = "Gano Player 1!";
-        DrawText(pla1Win.c_str(), GetScreenWidth() / 2 - MeasureText(pla1Win.c_str(), GetScreenHeight() / 10) / 2,
-                 GetScreenHeight() / 2, GetScreenHeight() / 10, NEONCYAN);
-        DrawText(pressEsc.c_str(), GetScreenWidth() / 2 - MeasureText(pressEsc.c_str(), GetScreenHeight() / 23) / 2,
-                 GetScreenHeight() / 1.7f, GetScreenHeight() / 23, NEONCYAN);
+        DrawText(pla1Win.c_str(), static_cast<int>(screenWidth / 2 - MeasureText(pla1Win.c_str(), static_cast<int>(screenHeight) / 10) / 2),
+                 static_cast<int>(screenHeight) / 2, static_cast<int>(screenHeight) / 10, NEONCYAN);
+        DrawText(pressEsc.c_str(), static_cast<int>(screenWidth) / 2 - MeasureText(pressEsc.c_str(), static_cast<int>(screenHeight) / 23) / 2,
+                 static_cast<int>(screenHeight / 1.7f), static_cast<int>(screenHeight) / 23, NEONCYAN);
 
         menuOptions = MenuOptions::menu;
     }
@@ -276,14 +278,14 @@ void HidePowerUps(Rectangle& growBar, Rectangle& dwarfBall)
 
 void ResetGrowBar(Rectangle& growBar)
 {
-    float rand1 = rand() % GetScreenWidth() / 3.0f + GetScreenWidth() / 4.0f;
-    float rand2 = rand() % GetScreenHeight() / 3.0f + GetScreenHeight() / 4.0f;
-    growBar = {rand1, rand2, GetScreenWidth() / 10.0f, GetScreenHeight() / 8.0f};
+    float rand1 = rand() % static_cast<int>(screenWidth) / 3.0f + screenWidth / 4.0f;
+    float rand2 = rand() % static_cast<int>(screenHeight) / 3.0f + screenHeight / 4.0f;
+    growBar = {rand1, rand2, screenWidth / 10.0f, screenHeight / 8.0f};
 }
 
 void ResetDwarfBall(Rectangle& dwarfBall)
 {
-    float rand3 = rand() % GetScreenWidth() / 3.0f + GetScreenWidth() / 4.0f;
-    float rand4 = rand() % GetScreenHeight() / 3.0f + GetScreenHeight() / 4.0f;
-    dwarfBall = {rand3, rand4, GetScreenWidth() / 13.0f, GetScreenHeight() / 8.0f};
+    float rand3 = rand() % static_cast<int>(screenWidth) / 3.0f + screenWidth / 4.0f;
+    float rand4 = rand() % static_cast<int>(screenHeight) / 3.0f + screenHeight / 4.0f;
+    dwarfBall = {rand3, rand4, screenWidth / 13.0f, screenHeight / 8.0f};
 }

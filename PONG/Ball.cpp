@@ -2,7 +2,7 @@
 
 void DrawBall(Rectangle ball)
 {
-    DrawCircle(ball.x, ball.y, ball.width, WHITE);
+    DrawCircle(static_cast<int>(ball.x), static_cast<int>(ball.y), ball.width, WHITE);
 }
 
 void MoveBall(Rectangle& ball, float ballSpeedX, float ballSpeedY)
